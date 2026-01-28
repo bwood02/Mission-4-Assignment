@@ -14,6 +14,9 @@
             // Ask for player names (store them in variables)
             while (!gameOver)
             {
+                // Make sure you track current player somehow
+                char currentPlayer = 'x';
+                
                 //Main loop
                 //      Print board
                 //      Ask player for choice of where to play
@@ -21,9 +24,11 @@
                 //      Update board
                 //      Check for winner
                 //      Notify who won
+                //      Update currentPlayer to the next player (the other one being 'o')
             }
 
             //      Play again?
+            //      If yes, reset board
         }
 
 
@@ -55,8 +60,10 @@
         return valid;
     }
 
-    private static char[] UpdateBoard(string choice, char[] board)
+    private static char[] UpdateBoard(string choice, char[] board, char currentPlayer)
     {
+        int.TryParse(choice, out int boardSpace);
+        board[boardSpace] = currentPlayer;
         return board;
     }
 }
