@@ -19,7 +19,6 @@
                 //      Ask player for choice of where to play
                 //      Validate choice
                 //      Update board
-                board = UpdateBoard(board);
                 //      Check for winner
                 //      Notify who won
             }
@@ -31,13 +30,32 @@
         // Say goodbye
     }
 
-    private static bool IsValidChoice(int choice)
+    // Determines if user entered an unchosen int
+    private static bool IsValidChoice(string choice, char[] board)
     {
-        // Determines if they entered an unchosen int
-        return true;
+        bool valid = true;
+
+        // Make sure it's a single character
+        if (choice.Length != 1)
+        {
+            valid = false;
+        }
+        // Make sure it's a number
+        else if (!int.TryParse(choice, out int _))
+        {
+            valid = false;
+        }
+        // Make sure it's a number in the board array
+        // (if it passed the previous if statement it's a number)
+        else if (!board.Contains(choice[0]))
+        {
+            valid = false;
+        }
+
+        return valid;
     }
 
-    private static char[] UpdateBoard(char[] board)
+    private static char[] UpdateBoard(string choice, char[] board)
     {
         return board;
     }
