@@ -14,8 +14,9 @@
             // Ask for player names (store them in variables)
             while (!gameOver)
             {
+                // Make sure the x and o is upper-case
                 // Make sure you track current player somehow
-                char currentPlayer = 'x';
+                char currentPlayer = 'X';
                 
                 //Main loop
                 //      Print board
@@ -24,7 +25,7 @@
                 //      Update board
                 //      Check for winner
                 //      Notify who won
-                //      Update currentPlayer to the next player (the other one being 'o')
+                //      Update currentPlayer to the next player (the other one being 'O')
             }
 
             //      Play again?
