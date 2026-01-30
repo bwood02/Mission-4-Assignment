@@ -6,7 +6,7 @@ namespace Mission_4_Assignment
 {
     internal class GameManager
     {
-        public void PrintgameBoard(char[] gamegameBoard)
+        public void PrintGameBoard(char[] gamegameBoard)
         {
             Console.WriteLine("Current gameBoard:");
             for (int i = 0; i < gamegameBoard.Length; i++)
@@ -50,24 +50,40 @@ namespace Mission_4_Assignment
                     new int[] {2,4,6}  // top-right → bottom-left
                 };
 
-                // Loop through each winning pattern
-                foreach (int[] pattern in winPatterns)
+            // Loop through each winning pattern
+            foreach (int[] pattern in winPatterns)
+            {
+                // Create a, b, c variables for each position in the winning pattern
+                int a = pattern[0]; // first index in int[ ] pattern above
+                int b = pattern[1]; // second index
+                int c = pattern[2]; // third index
+
+                // Check if all 3 positions have the same non-empty value (from the gameBoard array)
+                if (gameBoard[a] == gameBoard[b] &&
+                    gameBoard[b] == gameBoard[c] &&
+                    gameBoard[a] != ' ')
                 {
-                    // Create a, b, c variables for each position in the winning pattern
-                    int a = pattern[0]; // first index in int[ ] pattern above
-                    int b = pattern[1]; // second index
-                    int c = pattern[2]; // third index
-
-                    // Check if all 3 positions have the same non-empty value (from the gameBoard array)
-                    if (gameBoard[a] == gameBoard[b] &&
-                        gameBoard[b] == gameBoard[c] &&
-                        gameBoard[a] != ' ')
-                    {
-                        winner = gameBoard[a]; // If they are all the same, return that value ('X' or 'O')
-                    }
+                    winner = gameBoard[a]; // If they are all the same, return that value ('X' or 'O')
                 }
-
-                return winner; // No winner yet
             }
+
+            // Now that we've checked for a winner, check to see if the board is full without a winner
+            bool boardFull = true;
+            foreach (char space in gameBoard)
+            {
+                if (int.TryParse(space.ToString(), out int _))
+                {
+                    boardFull = false;
+                    break;
+                }
+            }
+
+            if (boardFull && winner == ' ')
+            {
+                winner = '-';
+            }
+
+            return winner; // No winner yet
+        }
     }
 }
