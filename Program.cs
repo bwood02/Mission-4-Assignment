@@ -62,12 +62,18 @@ internal class Program
                 // It's only possible for the current player to place the winning piece
                 if (result == currentPlayer)
                 {
-                    Console.WriteLine($"Player {currentPlayer}, {currentPlayerName}, wins!");
                     gameOver = true;
+
+                    // Print game board so they can see the final state
+                    currentGame.PrintGameBoard(board);
+                    Console.WriteLine($"Player {currentPlayer}, {currentPlayerName}, wins!");
                 } else if (result == '-')
                 {
-                    Console.WriteLine($"The game ends in a tie :(");
                     gameOver = true;
+
+                    // Print game board so they can see the final state
+                    currentGame.PrintGameBoard(board);
+                    Console.WriteLine($"The game ends in a tie :(");
                 }
 
                 // ========== Change Player =========================================================
