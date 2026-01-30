@@ -1,29 +1,10 @@
-using Mission_4_Assignment;
-
-internal class Program
+﻿internal class Program
 {
     private static void Main(string[] args)
     {
         Console.WriteLine("Welcome to Tic Tac Toe!");
 
         bool playAgain = true; // start the game at least once
-
-        // Ask for player names - store in variables
-        Console.Write("Player X, what is your name? ");
-        string playerXName = Console.ReadLine() ?? "";
-        // if they don't enter a name, default to "Player X"
-        if (string.IsNullOrWhiteSpace(playerXName))
-        {
-            playerXName = "Player X";
-        }
-
-        Console.Write("Player O, what is your name? ");
-        string playerOName = Console.ReadLine() ?? "";
-        // if they don't enter a name, default to "Player O"
-        if (string.IsNullOrWhiteSpace(playerOName))
-        {
-            playerOName = "Player O";
-        }
 
         while (playAgain)
         {
@@ -85,26 +66,12 @@ internal class Program
                 }
             }
 
-            // The game is over now, ask if they want to play again
-            //      Print "Do you want to play again? (yes/no):"
-            Console.Write("Do you want to play again? (yes/no): ");
-            //      Read what they type
-            string playAgainChoice = Console.ReadLine() ?? "";
-            //      If they said yes or y, set playAgain to true (loop will start over)
-            if (playAgainChoice.ToLower() == "yes" || playAgainChoice.ToLower() == "y")
-            {
-                playAgain = true;
-            }
-            //      If they said no or n, set playAgain to false (loop will end)
-            else if (playAgainChoice.ToLower() == "no" || playAgainChoice.ToLower() == "n")
-            {
-                playAgain = false;
-            }
+            //      Play again?
+            //      If yes, reset board
         }
 
 
         // Say goodbye
-        Console.WriteLine("Thanks for playing!");
     }
 
     // Determines if user entered an unchosen int
