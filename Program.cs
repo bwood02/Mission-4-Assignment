@@ -6,9 +6,6 @@ internal class Program
     {
         Console.WriteLine("Welcome to Tic Tac Toe!");
 
-        char[] board = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
-
-        bool gameOver = false;
         bool playAgain = true; // start the game at least once
 
         // Ask for player names - store in variables
@@ -30,41 +27,42 @@ internal class Program
 
         while (playAgain)
         {
-            // Reset the game so we can play again
             // Set gameOver back to false so the game can start
-            gameOver = false;
+            bool gameOver = false;
             // Put all the numbers back on the board reset board array to ['1', '2', '3', '4', '5', '6', '7', '8', '9']
-            board = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
-            // set current player to 'x'
-            char currentPlayer = 'x';
+            char[] board = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
+            // Set current player to 'X'
+            char currentPlayer = 'X';
 
             while (!gameOver)
             {
                 // show what the board currently looks like
-                //      call the PrintBoard method from the supporting class
-                //      give it the board array so it knows what to print"
-                GameManager.PrintBoard(board); // 
+                // call the PrintBoard method from the supporting class
+                // give it the board array so it knows what to print"
+                GameManager.PrintgameBoard(board); // 
                 
-                // ask the player which spot they want to select "Where do you want to place your [X] or [O]?" - pull the X or O from the currentPlayer variable
-                //      save the choice in a variable
-                Console.Write($"Where do you want to place your [{currentPlayer}]? ");
+                // ask the player which spot they want to select "Where do you want to
+                // place your [X] or [O]?" - pull the X or O from the currentPlayer variable
+                // save the choice in a variable
+                Console.Write($"Where do you want to place your '{currentPlayer}'? ");
                 string choice = Console.ReadLine() ?? "";
                 
                 // use the IsValidChoice function to check if the choice is valid
-                //      if it's not valid - "Choose one of the available spots"
-                //      then skip back spot selection
-                if (!IsValidChoice(choice, board))
+                // Continue to prompt the user to choose a spot until they give a valid spot
+                while (!IsValidChoice(choice, board))
                 {
-                    Console.WriteLine("Choose one of the available spots");
-                    continue;
+                    Console.WriteLine("Please enter a single-digit number matching an available spot on the board.");
+                    choice = Console.ReadLine() ?? "";
                 }
                 
-                // put mark on board using UpdateBoard function - give it: their choice, the board, and which player they are (currentPlayer)
+                // put mark on board using UpdateBoard function
+                // give it: their choice, the board, and which player they are (currentPlayer)
                 board = UpdateBoard(choice, board, currentPlayer);
 
                 // check if someone won the game
-                //      call the CheckForWinner method from the supporting class - give it the board array
-                //      save what it returns - tells us if there's a winner and who won
+                // call the CheckForWinner method from the supporting class
+                // give it the board array
+                // save what it returns - tells us if there's a winner and who won
                 string winner = GameManager.CheckForWinner(board);
                 if (winner != "")
                 {
@@ -75,15 +73,15 @@ internal class Program
                 
                 // if nobody won yet, switch to the other player
                 //      if currentPlayer is 'x', change it to 'o' - this way the next time through the loop, it's the other player's turn
-                if (currentPlayer == 'x')
+                if (currentPlayer == 'X')
                 {
-                    currentPlayer = 'o';
+                    currentPlayer = 'O';
                 }
                 //      if currentPlayer is 'o', change it to 'x' - this way the next time through the loop, it's the other player's turn
                 
                 else
                 {
-                    currentPlayer = 'x';
+                    currentPlayer = 'X';
                 }
             }
 
